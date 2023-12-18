@@ -44,7 +44,7 @@ export default function RootLayout({
             className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200"
             href="#"
           >
-            Sign up
+            Sign up____
           </Link>
         </nav>
         <div className="px-28">{children}</div>
