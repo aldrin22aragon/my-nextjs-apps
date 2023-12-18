@@ -2,3 +2,7 @@ npm install json-server --save-dev
 npx json-server --watch ./json-server/data.json --port 3004
     or 
 npm json-server --watch ./json-server/data.json --port 3004
+
+
+//
+npx json-server --watch ./json-server/data.json
