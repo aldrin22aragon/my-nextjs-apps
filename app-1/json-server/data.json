@@ -1,9 +1,10 @@
 {
-  "items": [
+  "todo": [
     {
       "id": 1,
       "checked": false,
-      "item": "Almonds, Unsalted, in the blue bag"
+      "title": "Home",
+      "description": "Wash dishes"
     }
   ]
 }

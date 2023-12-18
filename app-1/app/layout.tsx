@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
+import { Nav } from "./app-components/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,38 +15,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
-          <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-            <li>
-              <Link
-                className="text-sm text-gray-400 hover:text-gray-500"
-                href="#"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link className="text-sm text-blue-600 font-bold" href="#">
-                Todo list
-              </Link>
-            </li>
-          </ul>
-          <Link
-            className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200"
-            href="#"
-          >
-            Sign In
-          </Link>
-          <Link
-            className="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200"
-            href="#"
-          >
-            Sign up____ Test
-          </Link>
-        </nav>
+        <Nav />
         <div className="px-28">{children}</div>
       </body>
     </html>
