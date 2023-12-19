@@ -8,9 +8,9 @@
     },
     {
       "id": 2,
-      "description": "Clean the bathroom",
+      "description": "Install Dependencies",
       "pending": "true",
-      "title": "Home"
+      "title": "Setup"
     }
   ]
 }
