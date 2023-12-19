@@ -5,8 +5,15 @@ export default async function Todo() {
   const j = await getTodoList();
   return (
     <>
+      <div className="flex justify-end">
+        <button>Add +</button>
+      </div>
       {j.map((value) => (
-        <Link href={`/todo-list/${value.id}`} className="block bg-slate-200 mb-2" key={value.id}>
+        <Link
+          href={`/todo-list/${value.id}`}
+          className="block bg-slate-200 mb-2"
+          key={value.id}
+        >
           <div className="bg-slate-300 p-2 flex justify-between">
             <div>{value.title}</div>
             <div className="flex gap-2">

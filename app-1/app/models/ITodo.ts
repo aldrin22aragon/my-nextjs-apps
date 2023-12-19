@@ -34,11 +34,12 @@ export const getTodo = async (id: string, next: NextFetchRequestConfig = { reval
 
 export const updateTodo = async (todo: ITodo) => {
     const str: string = JSON.stringify(todo)
-    console.log(str)
     const s = await fetch(api(`todo/${todo.id}`), {
-        method: "PUT", headers: {
+        method: "PUT",
+        headers: {
             "Content-Type": "application/json"
-        }, body: str
+        },
+        body: str
     })
     return await s.json() as ITodo
 }
