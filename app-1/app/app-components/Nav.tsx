@@ -14,8 +14,8 @@ export const Nav = () => {
     }
   };
   return (
-    <nav className="relative px-4 py-4 flex justify-between items-center bg-white">
-      <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
+    <nav className="relative px-4 py-4 flex justify-between items-center bg-gray-100 h-16">
+      <ul className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 flex gap-4">
         <li>
           <Link className={`text-sm ${returnActiveIfMatched("/")}`} href="/">
             Home

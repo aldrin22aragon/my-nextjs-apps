@@ -20,7 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Nav />
-        <div className="px-28">{children}</div>
+        <div className="lg:px-60 md:px-40 sm:px-20 px-10 py-5">
+          <div className="shadow-lg p-2">
+          {children}
+          </div>
+        </div>
       </body>
     </html>
   );

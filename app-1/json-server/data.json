@@ -2,9 +2,15 @@
   "todo": [
     {
       "id": 1,
-      "checked": false,
-      "title": "Home",
-      "description": "Wash dishes111"
+      "description": "Create react app",
+      "pending": "false",
+      "title": "Setup"
+    },
+    {
+      "id": 2,
+      "description": "Clean the bathroom",
+      "pending": "true",
+      "title": "Home"
     }
   ]
 }
