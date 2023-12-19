@@ -1,5 +1,6 @@
 import { getTodo, todoParse, updateTodo } from "@/app/models/ITodo";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 type par = {
   params: {
@@ -12,7 +13,8 @@ export default async function Page({ params }: par) {
   const saveTodo = async (data: FormData) => {
     "use server";
     const res = await updateTodo(todoParse(data))
-    revalidatePath("/todo-list")
+    // revalidatePath("/todo-list")
+    redirect("/todo-list")
     console.log(res)
   };
   return (
