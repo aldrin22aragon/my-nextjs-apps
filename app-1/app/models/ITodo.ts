@@ -1,3 +1,4 @@
+import { publicDecrypt } from "crypto";
 import { api } from "./variables";
 
 export type ITodo = {
@@ -7,7 +8,7 @@ export type ITodo = {
     description: string
 }
 
-export const todoParse = (data: FormData) => {
+export const todoParse = (data: FormData): ITodo => {
     return {
         id: data.getAll("id").toString(),
         description: data.getAll("description").toString(),
@@ -21,7 +22,7 @@ export const getTodoList = async (next: NextFetchRequestConfig = { revalidate: 0
         method: "get",
         next
     });
-    return await s.json() as ITodo[]
+    return await s.json() as Promise<ITodo[]>
 }
 
 export const getTodo = async (id: string, next: NextFetchRequestConfig = { revalidate: 0 }): Promise<ITodo> => {
@@ -29,17 +30,32 @@ export const getTodo = async (id: string, next: NextFetchRequestConfig = { reval
         method: "get",
         next
     });
-    return await s.json() as ITodo
+    return await s.json() as Promise<ITodo>
 }
 
-export const updateTodo = async (todo: ITodo) => {
+export const updateTodo = async (todo: ITodo): Promise<ITodo> => {
     const str: string = JSON.stringify(todo)
     const s = await fetch(api(`todo/${todo.id}`), {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
+        body: str,
+        next: {
+            revalidate: 0 // important is to revalidate the url api. 
+        }
+    })
+    return await s.json() as Promise<ITodo>
+}
+
+export const addTodo = async (todo: ITodo): Promise<ITodo> =>{
+    const str: string = JSON.stringify(todo)
+    const s = await fetch(api(`todo`), {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: str
     })
-    return await s.json() as ITodo
+    return await s.json() as Promise<ITodo>
 }

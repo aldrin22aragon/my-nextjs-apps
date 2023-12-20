@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { getTodoList } from "../models/ITodo";
+import { redirect } from "next/navigation";
 
 export default async function Todo() {
   const j = await getTodoList();
+  
   return (
     <>
       <div className="flex justify-end">
-        <button>Add +</button>
+        
       </div>
       {j.map((value) => (
         <Link

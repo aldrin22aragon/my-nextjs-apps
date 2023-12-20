@@ -12,10 +12,8 @@ export default async function Page({ params }: par) {
   const todo = await getTodo(params.id);
   const saveTodo = async (data: FormData) => {
     "use server";
-    console.log("Nasa server..");
     const res = await updateTodo(todoParse(data));
     redirect("/todo-list");
-    revalidatePath(`/todo-list/${res.id}`);
   };
   return (
     <form action={saveTodo}>

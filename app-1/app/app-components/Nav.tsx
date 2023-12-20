@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 
 export const Nav = () => {
   const route = usePathname();
-  console.log(route);
   const returnActiveIfMatched = (path: string): string => {
     if (path == route) {
       return "text-blue-600 font-bold";
