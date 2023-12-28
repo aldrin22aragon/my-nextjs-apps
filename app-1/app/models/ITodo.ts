@@ -1,6 +1,4 @@
-import { publicDecrypt } from "crypto";
 import { api } from "./variables";
-import { revalidatePath } from "next/cache";
 import { string, z } from "zod";
 
 export type ITodo = {
@@ -26,18 +24,21 @@ export const todoParse = (data: FormData): ITodo => {
     } as ITodo
 }
 
-export const getTodoList = async (next: NextFetchRequestConfig = { revalidate: 0 }): Promise<ITodo[]> => {
+export const getTodoList = async (): Promise<ITodo[]> => {
     const s = await fetch(api('todo'), {
         method: "get",
-        next
+        next: {
+            revalidate: 0
+        },
+        cache: "no-store"
     });
     return await s.json() as Promise<ITodo[]>
 }
 
-export const getTodo = async (id: string, next: NextFetchRequestConfig = { revalidate: 0 }): Promise<ITodo> => {
+export const getTodo = async (id: string): Promise<ITodo> => {
     const s = await fetch(api(`todo/${id}`), {
         method: "get",
-        next
+        cache: "no-store"
     });
     return await s.json() as Promise<ITodo>
 }
@@ -49,9 +50,7 @@ export const updateTodo = async (todo: ITodo): Promise<ITodo> => {
         headers: {
             "Content-Type": "application/json"
         },
-        next: {
-            revalidate: 0
-        },
+        cache: "no-store",
         body: str
     })
     return await s.json() as Promise<ITodo>
@@ -64,7 +63,15 @@ export const addTodo = async (todo: ITodo): Promise<ITodo> => {
         headers: {
             "Content-Type": "application/json"
         },
+        cache: "no-store",
         body: str
     })
     return await s.json() as Promise<ITodo>
+}
+
+export const deleteTodo = async (id: string): Promise<Response> => {
+    return await fetch(api(`todo/${id}`), {
+        method: "DELETE",
+        cache: "no-store"
+    })    
 }

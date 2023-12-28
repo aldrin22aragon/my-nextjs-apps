@@ -1,16 +1,10 @@
 {
   "todo": [
     {
-      "id": 1,
-      "description": "Create react app1",
-      "pending": "true",
-      "title": "Setup1"
-    },
-    {
-      "id": 2,
-      "description": "Install Dependencies",
+      "id": 3,
+      "description": "Set Migration to GIT1",
       "pending": "false",
-      "title": "Setup"
+      "title": "Migration1"
     }
   ]
 }

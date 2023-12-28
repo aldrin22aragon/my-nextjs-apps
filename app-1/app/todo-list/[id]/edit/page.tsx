@@ -1,4 +1,4 @@
-import { getTodo, todoParse, updateTodo } from "@/app/models/ITodo";
+import { deleteTodo, getTodo, todoParse, updateTodo } from "@/app/models/ITodo";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -12,9 +12,13 @@ export default async function Page({ params }: par) {
     const todo = await getTodo(params.id);
     const saveTodo = async (data: FormData) => {
         "use server";
-        const a: string = "end";
-        const res = await updateTodo(await todoParse(data));
+        const res = await updateTodo(todoParse(data));
         redirect("/todo-list");
+    };
+    const deleteAction = async (data: FormData) => {
+        "use server";
+        const r = await deleteTodo(params.id)
+        redirect('/todo-list')
     };
     return (
         <form action={saveTodo}>
@@ -33,7 +37,10 @@ export default async function Page({ params }: par) {
                 defaultValue={todo.description}
             />
             <div></div>
-            <input type="submit" value={"Save"} />
+            <div className="flex justify-between">
+                <input type="submit" value={"Save"} />
+                <button formAction={deleteAction}>Delete</button>
+            </div>
         </form>
     );
 }
