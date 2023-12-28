@@ -2,9 +2,9 @@
   "todo": [
     {
       "id": 1,
-      "description": "Create react app",
-      "pending": "false",
-      "title": "Setup"
+      "description": "Create react app1",
+      "pending": "true",
+      "title": "Setup1"
     },
     {
       "id": 2,

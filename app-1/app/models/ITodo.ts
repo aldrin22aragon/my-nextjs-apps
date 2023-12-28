@@ -1,5 +1,7 @@
 import { publicDecrypt } from "crypto";
 import { api } from "./variables";
+import { revalidatePath } from "next/cache";
+import { string, z } from "zod";
 
 export type ITodo = {
     id: string;
@@ -7,6 +9,13 @@ export type ITodo = {
     title: string;
     description: string
 }
+
+const a = z.object({
+    id: z.number(),
+    description: z.string(),
+    pending: z.boolean(),
+    title: z.string()
+})
 
 export const todoParse = (data: FormData): ITodo => {
     return {
@@ -40,15 +49,15 @@ export const updateTodo = async (todo: ITodo): Promise<ITodo> => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: str,
         next: {
-            revalidate: 0 // important is to revalidate the url api. 
-        }
+            revalidate: 0
+        },
+        body: str
     })
     return await s.json() as Promise<ITodo>
 }
 
-export const addTodo = async (todo: ITodo): Promise<ITodo> =>{
+export const addTodo = async (todo: ITodo): Promise<ITodo> => {
     const str: string = JSON.stringify(todo)
     const s = await fetch(api(`todo`), {
         method: "POST",

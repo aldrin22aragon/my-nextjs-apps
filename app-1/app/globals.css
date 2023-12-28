@@ -12,3 +12,7 @@
 input, select {
   @apply bg-orange-200
 }
+
+.aaa {
+  @apply bg-slate-300 p-1
+}
