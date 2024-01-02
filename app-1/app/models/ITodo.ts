@@ -8,12 +8,6 @@ export type ITodo = {
     description: string
 }
 
-const a = z.object({
-    id: z.number(),
-    description: z.string(),
-    pending: z.boolean(),
-    title: z.string()
-})
 
 export const todoParse = (data: FormData): ITodo => {
     return {
@@ -29,8 +23,7 @@ export const getTodoList = async (): Promise<ITodo[]> => {
         method: "get",
         next: {
             revalidate: 0
-        },
-        cache: "no-store"
+        }
     });
     return await s.json() as Promise<ITodo[]>
 }
