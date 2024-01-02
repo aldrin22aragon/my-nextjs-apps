@@ -9,6 +9,7 @@ let count: number = 0
 export function middleware(request: NextRequest) {
     // console.log("aaa", count)
     count += 1
+    
     const res = NextResponse.next()
     res.cookies.set("counter",count.toString())
     return res
